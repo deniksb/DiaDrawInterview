@@ -1,12 +1,15 @@
 package com.diadraw.service;
 
+import com.diadraw.exception.CodeNotFoundException;
 import com.diadraw.model.Customer;
+import com.diadraw.model.VerificationCode;
+import com.diadraw.repository.VerificationCodeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -19,44 +22,57 @@ public class CodeVerificationService {
 
     private static final int CODE_LENGTH = 6;
 
-    private final Map<String, Customer> verificationCodes;
+    private final VerificationCodeRepository verificationCodeRepository;
 
     private final JwtService jwtService;
 
-    public CodeVerificationService(final JwtService jwtService)
+    public CodeVerificationService(final JwtService jwtService, final VerificationCodeRepository verificationCodeRepository)
     {
-        this.verificationCodes = new HashMap<>();
+        this.verificationCodeRepository = verificationCodeRepository;
         this.jwtService = jwtService;
     }
 
     public String createVerificationCode(final Customer customer)
     {
-        String code;
+        final String code = generateCode();
 
-        do {
-            code = generateCode();
-        } while (verificationCodes.containsKey(code));
+        final VerificationCode verificationCode = new VerificationCode();
 
-        verificationCodes.put(code, customer);
+        verificationCode.setCode(code);
+        verificationCode.setCreationDate(OffsetDateTime.now());
+        verificationCode.setCustomer(customer);
+
+        verificationCodeRepository.save(verificationCode);
 
         return code;
     }
 
-    public Optional<String> verifyCode(final String code)
-    {
+    public String verifyCode(final String code, final String email) throws CodeNotFoundException {
         try
         {
-            final Customer customer = verificationCodes.get(code);
+            final VerificationCode verificationCode = verificationCodeRepository.findByCode(code);
 
-            verificationCodes.remove(code);
+            if(verificationCode == null)
+            {
+                throw new CodeNotFoundException();
+            }
 
-            return Optional.of(jwtService.generateJwtToken(customer.getEmail(), customer.getPhoneNumber()));
+            final Customer customer = verificationCode.getCustomer();
+
+            if(!Objects.equals(customer.getEmail(), email))
+            {
+                throw new CodeNotFoundException();
+            }
+
+            verificationCodeRepository.deleteById(verificationCode.getId());
+
+            return jwtService.generateJwtToken(verificationCode.getCustomer().getEmail(), verificationCode.getCustomer().getPhoneNumber());
         }
         catch (Exception e)
         {
             logger.warn("Failed to verify code: " + code + ", " + e);
 
-            return Optional.empty();
+            throw e;
         }
     }
 

@@ -2,6 +2,7 @@ package com.diadraw.service;
 
 import com.diadraw.CredentialVerificationUtills;
 import com.diadraw.exception.InvalidEmailException;
+import com.diadraw.exception.InvalidLoginException;
 import com.diadraw.exception.InvalidPhoneNumberException;
 import com.diadraw.model.Customer;
 import com.diadraw.model.SignupRequest;
@@ -46,7 +47,7 @@ public class SignupService {
 
             customerRepository.save(newCustomer);
 
-            codeSendService.sendCodeViaEmail(signupRequest.email());
+            codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
         }
         catch (Exception e)
         {
@@ -54,5 +55,37 @@ public class SignupService {
 
             throw e;
         }
+    }
+
+    public void loginCustomer(final SignupRequest signupRequest) throws Exception
+    {
+        try
+        {
+            if(!CredentialVerificationUtills.isValidEmail(signupRequest.email()))
+            {
+                throw new InvalidEmailException();
+            }
+
+            if(!CredentialVerificationUtills.isValidPhoneNumber(signupRequest.phoneNumber()))
+            {
+                throw new InvalidPhoneNumberException();
+            }
+
+            final Customer customer = customerRepository.findByEmailAndPhoneNumber(signupRequest.email(), signupRequest.phoneNumber());
+
+            if(customer == null)
+            {
+                throw new InvalidLoginException();
+            }
+
+            codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
+        }
+        catch (Exception e)
+        {
+            logger.error("Failed to login customer: " + signupRequest + ", " + e);
+
+            throw e;
+        }
+
     }
 }

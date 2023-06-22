@@ -6,6 +6,7 @@ import com.diadraw.model.SignupRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class SignupController {
 
     private final SignupService signupService;
@@ -19,5 +20,11 @@ public class SignupController {
     public void signUp(@RequestBody final SignupRequest signupRequest) throws Exception {
 
         signupService.registerCustomer(signupRequest);
+    }
+
+    @PostMapping("/signin")
+    public void signIn(@RequestBody final SignupRequest signupRequest) throws Exception {
+
+        signupService.loginCustomer(signupRequest);
     }
 }

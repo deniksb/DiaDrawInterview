@@ -1,13 +1,14 @@
 package com.diadraw.controller;
 
+import com.diadraw.exception.CodeNotFoundException;
 import com.diadraw.service.CodeSendService;
 import com.diadraw.service.CodeVerificationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class CodeVerificationController {
 
     private final CodeVerificationService codeVerificationService;
@@ -20,10 +21,10 @@ public class CodeVerificationController {
         this.codeSendService = codeSendService;
     }
 
-    @GetMapping("/verify/{code}")
-    public Optional<String> verifyCode(@PathVariable final String code) {
+    @GetMapping("/verify")
+    public String verifyCode(@RequestParam final String code, @RequestParam final String email) throws CodeNotFoundException {
 
-        return codeVerificationService.verifyCode(code);
+        return codeVerificationService.verifyCode(code, email);
     }
 
     @GetMapping("/verify/email")
