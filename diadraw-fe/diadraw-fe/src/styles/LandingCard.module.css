@@ -19,3 +19,7 @@
     height: 2.5rem;
     border: none;
 }
+
+.landingbutton:hover {
+    background-color: #27127d;
+  }
