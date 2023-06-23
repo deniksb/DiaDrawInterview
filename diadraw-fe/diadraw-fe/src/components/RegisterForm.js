@@ -1,46 +1,50 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import RegisterFormCSS from '../styles/RegisterForm.module.css';
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ image, onSubmit }) => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create the request payload
     const data = { email, phoneNumber };
 
-    // Call the onSubmit function with the payload
     onSubmit(data);
 
-    // Reset the form fields
     setEmail('');
     setPhoneNumber('');
   };
 
   return (
+    <div className={RegisterFormCSS.registerformcontainer}>
+    <p>Enter your mobile no. & email id</p>
+    <img src={image} />
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Phone Number:</label>
+    <div className={RegisterFormCSS.inputfieldcontainer}>
+        <label>MOBILE NO.</label>
         <input
           type="tel"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           required
+          className={RegisterFormCSS.inputfield}
         />
       </div>
-      <button type="submit">Submit</button>
+      <div className={RegisterFormCSS.inputfieldcontainer}>
+        <label>EMAIL ADDRESS</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className={RegisterFormCSS.inputfield}
+        />
+      </div>
+      <button type="submit">CONTINUE</button>
     </form>
+    <p className={RegisterFormCSS.termstext}>By signing up, I agree to the <a href='#'>Privacy Policy</a> & <a href='#'>Terms of Use</a></p>
+    </div>
   );
 };
 
