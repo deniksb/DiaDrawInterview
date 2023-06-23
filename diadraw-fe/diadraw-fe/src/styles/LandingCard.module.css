@@ -5,4 +5,14 @@
     border: 1px solid #E0E0E0;
     background-color: #FFFFFF;
     width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
   }
+
+.landingbutton {
+    background: #001B36;
+    border-radius: 5px;
+    color: #FFFFFF;
+    width: 100%;
+    height: 2.5rem;
+}
