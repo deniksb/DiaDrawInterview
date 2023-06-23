@@ -6,12 +6,14 @@ import LoginPage from './pages/LoginPage';
 import VerifyPage from './pages/VerifyPage';
 import ProtectedRoutes from './services/ProtectedRoutes';
 import VerifiedPage from './pages/VerifiedPage';
+import NavBar from './components/NavBar';
 
 const App = () => {
 
   return (
     <Router>
       <div className="app">
+        <NavBar />
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/register" element={<RegisterPage />} />
