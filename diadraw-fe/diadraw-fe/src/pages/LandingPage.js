@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from '../components/Button';
+import LandingCard from '../components/LandingCard';
 import { useNavigate } from 'react-router-dom';
+import LandingPageCSS from '../styles/LandingPage.module.css';
 
 const LandingPage = () => {
 
@@ -15,12 +16,12 @@ const LandingPage = () => {
       };
 
   return (
-    <div className="landing-page">
+    <div className={LandingPageCSS.landingpage}>
       <h1>Welcome to Website</h1>
-      <h2>Keeping Communities Connected</h2>
+      <p>Keeping Communities Connected</p>
       <div className="button-container">
-        <Button label="Register" onClick={onRegister} />
-        <Button label="Login" onClick={onLogin} />
+        <LandingCard headingLabel="I'm new user" buttonLabel="CREATE ACCOUNT" onClick={onRegister} />
+        <LandingCard headingLabel = "I have an account" buttonLabel="LOGIN NOW" onClick={onLogin} />
       </div>
     </div>
   );
