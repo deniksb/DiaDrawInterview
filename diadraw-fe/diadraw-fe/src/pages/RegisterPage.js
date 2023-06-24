@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const handleSubmit = async (data) => {
     await axios.post("http://localhost:8080/signup", data)
       .then(response => {
-        console.log(response)
+        console.log(response.data)
         navigate(`/verify?email=${encodeURIComponent(data.email)}`);
       })
       .catch(error => {

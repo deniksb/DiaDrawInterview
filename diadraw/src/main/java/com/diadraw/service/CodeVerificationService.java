@@ -6,11 +6,11 @@ import com.diadraw.model.VerificationCode;
 import com.diadraw.repository.VerificationCodeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -19,6 +19,8 @@ import java.util.stream.IntStream;
 public class CodeVerificationService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    private final static int EXPIRATION_MINUTES = 10;
 
     private static final int CODE_LENGTH = 6;
 
@@ -81,5 +83,12 @@ public class CodeVerificationService {
         return IntStream.range(0, CODE_LENGTH)
                 .mapToObj(i -> String.valueOf(ThreadLocalRandom.current().nextInt(10)))
                 .collect(Collectors.joining());
+    }
+
+    @Scheduled(cron = "0 */5 * * * ?")
+    private void deleteExpiredCodes() {
+        final OffsetDateTime targetDate = OffsetDateTime.now().minusMinutes(EXPIRATION_MINUTES);
+        verificationCodeRepository.deleteByCreationDateBefore(targetDate);
+        logger.info("Deleted expired verification codes");
     }
 }

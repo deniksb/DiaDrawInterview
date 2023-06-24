@@ -26,7 +26,7 @@ public class SignupService {
         this.codeSendService = codeSendService;
     }
 
-    public void registerCustomer(final SignupRequest signupRequest) throws Exception {
+    public String registerCustomer(final SignupRequest signupRequest) throws Exception {
         try
         {
             if(!CredentialVerificationUtills.isValidEmail(signupRequest.email()))
@@ -47,7 +47,7 @@ public class SignupService {
 
             customerRepository.save(newCustomer);
 
-            codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
+            return codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
         }
         catch (Exception e)
         {
@@ -57,7 +57,7 @@ public class SignupService {
         }
     }
 
-    public void loginCustomer(final SignupRequest signupRequest) throws Exception
+    public String loginCustomer(final SignupRequest signupRequest) throws Exception
     {
         try
         {
@@ -78,7 +78,7 @@ public class SignupService {
                 throw new InvalidLoginException();
             }
 
-            codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
+            return codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
         }
         catch (Exception e)
         {
