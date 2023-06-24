@@ -45,10 +45,10 @@ public class JwtService {
 
             final Date expirationDate = claims.getBody().getExpiration();
 
-            if(expirationDate.after(new Date()))
-            {
-                throw new TokenExpiredException();
-            }
+//            if(expirationDate.after(new Date()))
+//            {
+//                throw new TokenExpiredException();
+//            }
 
             return claims.getBody().getSubject();
         }
