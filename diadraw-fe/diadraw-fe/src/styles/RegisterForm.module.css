@@ -5,24 +5,47 @@
     border: 1px solid #E0E0E0;
     background-color: #FFFFFF;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 5% 10%;
     flex-wrap : wrap;
+    height: 25rem;
   }
+
+.registerform{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 10rem;
+}
 
 .inputfieldcontainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    height: 3rem;
 }
 
-.termstext{
-    font-size: 80%;
+.formtext{
+    font-size: 90%;
 }
 
 .inputfield{
     border: 1px solid #B3B3C9;
     border-radius: 4px;
+    padding: 4% 15%;
 }
+
+.formbutton{
+    background: #001B36;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: none;
+    padding: 5% 45%;
+}
+
+.formbutton:hover {
+    background-color: #27127d;
+  }

@@ -20,30 +20,32 @@ const RegisterForm = ({ image, onSubmit }) => {
     <div className={RegisterFormCSS.registerformcontainer}>
     <p>Enter your mobile no. & email id</p>
     <img src={image} />
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={RegisterFormCSS.registerform}>
     <div className={RegisterFormCSS.inputfieldcontainer}>
-        <label>MOBILE NO.</label>
+        <label className={RegisterFormCSS.formtext}>MOBILE NO.</label>
         <input
           type="tel"
           value={phoneNumber}
+          placeholder='Enter your mobile no.'
           onChange={(e) => setPhoneNumber(e.target.value)}
           required
           className={RegisterFormCSS.inputfield}
         />
       </div>
       <div className={RegisterFormCSS.inputfieldcontainer}>
-        <label>EMAIL ADDRESS</label>
+        <label className={RegisterFormCSS.formtext}>EMAIL ADDRESS</label>
         <input
           type="email"
           value={email}
+          placeholder='Enter your email id'
           onChange={(e) => setEmail(e.target.value)}
           required
           className={RegisterFormCSS.inputfield}
         />
       </div>
-      <button type="submit">CONTINUE</button>
+      <button className={RegisterFormCSS.formbutton} type="submit">CONTINUE</button>
     </form>
-    <p className={RegisterFormCSS.termstext}>By signing up, I agree to the <a href='#'>Privacy Policy</a> & <a href='#'>Terms of Use</a></p>
+    <p className={RegisterFormCSS.formtext}>By signing up, I agree to the <a href='#'>Privacy Policy</a> & <a href='#'>Terms of Use</a></p>
     </div>
   );
 };
