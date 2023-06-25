@@ -13,3 +13,7 @@ a:link{
   background-color: transparent;
   text-decoration: none;
 }
+
+input:invalid {
+  border-color: #EB5757;
+}

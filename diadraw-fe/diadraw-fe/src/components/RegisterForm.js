@@ -25,6 +25,7 @@ const RegisterForm = ({ image, onSubmit }) => {
         <label className={FormCSS.formtext}>MOBILE NO.</label>
         <input
           type="tel"
+          pattern="^(?:[0-9]?){6,14}[0-9]$"
           value={phoneNumber}
           placeholder='Enter your mobile no.'
           onChange={(e) => setPhoneNumber(e.target.value)}

@@ -23,6 +23,7 @@ const VerifyForm = ({ onSubmit, image, text, redirectUrl }) => {
         <label className={FormCSS.formtext}>VERIFICATION CODE</label>
         <input
           type="code"
+          pattern='^\d{6}$'
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder='Enter 6-digit verification code here'
