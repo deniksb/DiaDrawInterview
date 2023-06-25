@@ -4,7 +4,7 @@
 
 The project includes a react frontend and java spring boot backend. 
 
-Backend - diadraw folder:
+<b>Backend</b> - diadraw folder:
 Java 17, Maven, Spring Boot 3.1.0, IntelliJ Community Edition
 
 The program can be run by opening it with the IntelliJ IDE while having setup the Java 17 SDK and Maven. 
@@ -13,7 +13,7 @@ One environment variable is needed for it to work - INFO_BIP_API_KEY. This key c
 losfrenn@gmail.com. This is needed to gain access to the mail and sms send api which is used for validation codes. The project will start on port localhost:8080. Make sure it is free or
 just change the port in the configuration in necessary.
 
-Frontend - diadraw-fe folder:
+<b>Frontend</b> - diadraw-fe folder:
 I believe the project in the repo includes all of the dependencies and libraries and should be easily run by just entering the directory and running - npm start in the console. The program will start on port
 localhost:3000
 
