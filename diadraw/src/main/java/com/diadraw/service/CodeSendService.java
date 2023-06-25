@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
 @Service
 public class CodeSendService {
 
@@ -27,35 +25,59 @@ public class CodeSendService {
         this.customerRepository = customerRepository;
     }
 
-    public String sendCodeViaEmail(final String email) throws IOException {
-        final Customer customer = customerRepository.findByEmail(email);
+    public String sendCodeViaEmail(final String email) throws Exception {
 
-        if (customer == null) {
-            logger.warn("Customer not found when sending code via email " + email);
+        AutoCloseable closeable = null;
 
-            return Strings.EMPTY;
+        try {
+            final Customer customer = customerRepository.findByEmail(email);
+
+            if (customer == null) {
+                logger.warn("Customer not found when sending code via email " + email);
+
+                return Strings.EMPTY;
+            }
+
+            final String code = codeVerificationService.createVerificationCode(customer);
+
+            closeable = codeSendRestService.sendEmail(code, email);
+
+            return code;
+        } catch (Exception e) {
+            logger.error("Failed to send code via email: " + email + "with error: " + e);
+
+            throw e;
+        } finally {
+            assert closeable != null;
+            closeable.close();
         }
-
-        final String code = codeVerificationService.createVerificationCode(customer);
-
-        codeSendRestService.sendEmail(code, email);
-
-        return code;
     }
 
-    public String sendCodeViaPhone(final String phone) throws IOException {
-        final Customer customer = customerRepository.findByPhoneNumber(phone);
+    public String sendCodeViaPhone(final String phone) throws Exception {
 
-        if (customer == null) {
-            logger.warn("Customer not found when sending code via phone " + phone);
+        AutoCloseable closeable = null;
 
-            return Strings.EMPTY;
+        try {
+            final Customer customer = customerRepository.findByPhoneNumber(phone);
+
+            if (customer == null) {
+                logger.warn("Customer not found when sending code via phone " + phone);
+
+                return Strings.EMPTY;
+            }
+
+            final String code = codeVerificationService.createVerificationCode(customer);
+
+            closeable = codeSendRestService.sendSms(code, phone);
+
+            return code;
+        } catch (Exception e) {
+            logger.error("Failed to send code via phone: " + phone + "with error: " + e);
+
+            throw e;
+        } finally {
+            assert closeable != null;
+            closeable.close();
         }
-
-        final String code = codeVerificationService.createVerificationCode(customer);
-
-        codeSendRestService.sendSms(code, phone);
-
-        return code;
     }
 }

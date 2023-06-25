@@ -25,7 +25,7 @@ public class SignupService {
         this.codeSendService = codeSendService;
     }
 
-    public String registerCustomer(final SignupRequest signupRequest) throws Exception {
+    public void registerCustomer(final SignupRequest signupRequest) throws Exception {
         try {
             if (!CredentialVerificationUtills.isValidEmail(signupRequest.email())) {
                 throw new InvalidEmailException();
@@ -43,7 +43,6 @@ public class SignupService {
 
             customerRepository.save(newCustomer);
 
-            return codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
         } catch (Exception e) {
             logger.error("Failed to register customer: " + signupRequest + ", " + e);
 
@@ -51,7 +50,7 @@ public class SignupService {
         }
     }
 
-    public String loginCustomer(final SignupRequest signupRequest) throws Exception {
+    public void loginCustomer(final SignupRequest signupRequest) throws Exception {
         try {
             if (!CredentialVerificationUtills.isValidEmail(signupRequest.email())) {
                 throw new InvalidEmailException();
@@ -66,8 +65,6 @@ public class SignupService {
             if (customer == null) {
                 throw new InvalidLoginException();
             }
-
-            return codeSendService.sendCodeViaPhone(signupRequest.phoneNumber());
         } catch (Exception e) {
             logger.error("Failed to login customer: " + signupRequest + ", " + e);
 

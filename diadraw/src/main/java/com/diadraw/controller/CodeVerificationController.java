@@ -30,13 +30,13 @@ public class CodeVerificationController {
     }
 
     @GetMapping("/verify/email")
-    public String requestEmailVerificationCode(@RequestParam final String email) throws IOException {
+    public String requestEmailVerificationCode(@RequestParam final String email) throws Exception {
 
         return codeSendService.sendCodeViaEmail(email);
     }
 
     @GetMapping("/verify/phone")
-    public String requestPhoneVerificationCode(@RequestParam final String phoneNumber) throws IOException {
+    public String requestPhoneVerificationCode(@RequestParam final String phoneNumber) throws Exception {
 
         return codeSendService.sendCodeViaPhone(phoneNumber);
     }

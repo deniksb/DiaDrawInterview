@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import VerifyForm from '../components/VerifyForm';
 import jwt from 'jwt-decode';
@@ -37,6 +37,21 @@ const VerifyEmailPage = () => {
         alert("Failed verification");
       });
   };
+
+  useEffect(() => {
+    const sendCode = async (email) => {
+      try {
+        const response = await axios.get(`http://localhost:8080/verify/email?email=${email}`);
+        
+        console.log(response.data);
+      } catch (error) {
+        alert("Failed to send code");
+        console.error(error);
+      }
+    };
+
+    sendCode(email);
+  }, []);
 
   return (
     <div className={RegisterPageCSS.registerpagecontainer}>

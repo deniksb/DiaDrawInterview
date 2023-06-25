@@ -19,14 +19,14 @@ public class SignupController {
     }
 
     @PostMapping("/signup")
-    public String signUp(@RequestBody final SignupRequest signupRequest) throws Exception {
+    public void signUp(@RequestBody final SignupRequest signupRequest) throws Exception {
 
-        return signupService.registerCustomer(signupRequest);
+        signupService.registerCustomer(signupRequest);
     }
 
     @PostMapping("/signin")
-    public String signIn(@RequestBody final SignupRequest signupRequest) throws Exception {
+    public void signIn(@RequestBody final SignupRequest signupRequest) throws Exception {
 
-        return signupService.loginCustomer(signupRequest);
+        signupService.loginCustomer(signupRequest);
     }
 }
