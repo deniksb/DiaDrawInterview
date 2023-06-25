@@ -1,6 +1,6 @@
 package com.diadraw.service;
 
-import com.diadraw.CredentialVerificationUtills;
+import com.diadraw.DataValidationUtils;
 import com.diadraw.exception.InvalidEmailException;
 import com.diadraw.exception.InvalidLoginException;
 import com.diadraw.exception.InvalidPhoneNumberException;
@@ -27,11 +27,11 @@ public class SignupService {
 
     public void registerCustomer(final SignupRequest signupRequest) throws Exception {
         try {
-            if (!CredentialVerificationUtills.isValidEmail(signupRequest.email())) {
+            if (!DataValidationUtils.isValidEmail(signupRequest.email())) {
                 throw new InvalidEmailException();
             }
 
-            if (!CredentialVerificationUtills.isValidPhoneNumber(signupRequest.phoneNumber())) {
+            if (!DataValidationUtils.isValidPhoneNumber(signupRequest.phoneNumber())) {
                 throw new InvalidPhoneNumberException();
             }
 
@@ -52,11 +52,11 @@ public class SignupService {
 
     public void loginCustomer(final SignupRequest signupRequest) throws Exception {
         try {
-            if (!CredentialVerificationUtills.isValidEmail(signupRequest.email())) {
+            if (!DataValidationUtils.isValidEmail(signupRequest.email())) {
                 throw new InvalidEmailException();
             }
 
-            if (!CredentialVerificationUtills.isValidPhoneNumber(signupRequest.phoneNumber())) {
+            if (!DataValidationUtils.isValidPhoneNumber(signupRequest.phoneNumber())) {
                 throw new InvalidPhoneNumberException();
             }
 

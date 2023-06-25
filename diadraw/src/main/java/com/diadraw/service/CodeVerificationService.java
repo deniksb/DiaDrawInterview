@@ -15,6 +15,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static com.diadraw.DataValidationUtils.isValidVerificationCode;
+
 @Service
 public class CodeVerificationService {
 
@@ -63,7 +65,7 @@ public class CodeVerificationService {
         try {
             final VerificationCode verificationCode = verificationCodeRepository.findByCode(code);
 
-            if (verificationCode == null) {
+            if (verificationCode == null || !isValidVerificationCode(code)){
                 throw new CodeNotFoundException();
             }
 
