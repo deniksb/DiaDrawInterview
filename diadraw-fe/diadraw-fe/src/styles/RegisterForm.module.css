@@ -7,9 +7,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 5% 10%;
+    padding: 1rem 4rem;
     flex-wrap : wrap;
-    height: 25rem;
+    height: 30rem;
+    width: 20rem;
   }
 
 .registerform{

@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import RegisterForm from '../components/RegisterForm';
 import { useNavigate } from 'react-router-dom';
+import RegisterPageCSS from '../styles/RegisterPage.module.css';
+import RegisterFormImg from '../assets/RegisterForm.svg';
 
 const LoginPage = () => {
 
@@ -19,9 +21,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>LoginPage</h1>
-      <RegisterForm onSubmit={handleSubmit} />
+    <div className={RegisterPageCSS.registerpagecontainer}>
+      <h1>Welcome to Website</h1>
+      <div>
+      <RegisterForm image={RegisterFormImg} onSubmit={handleSubmit} />
+      </div>
     </div>
   );
 };
