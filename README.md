@@ -4,7 +4,7 @@
 
 The project includes a react frontend and java spring boot backend. 
 
-Backend requirements:
+Backend - diadraw folder:
 Java 17, Maven, Spring Boot 3.1.0, IntelliJ Community Edition
 
 The program can be run by opening it with the IntelliJ IDE while having setup the Java 17 SDK and Maven. 
@@ -13,7 +13,7 @@ One environment variable is needed for it to work - INFO_BIP_API_KEY. This key c
 losfrenn@gmail.com. This is needed to gain access to the mail and sms send api which is used for validation codes. The project will start on port localhost:8080. Make sure it is free or
 just change the port in the configuration in necessary.
 
-Frontend requirements:
+Frontend - diadraw-fe folder:
 I believe the project in the repo includes all of the dependencies and libraries and should be easily run by just entering the directory and running - npm start in the console. The program will start on port
 localhost:3000
 
@@ -24,5 +24,7 @@ since the API I am using is in development mode and phone numbers, emails need t
 be tested.
 
 <h2>2. Geometric shape calculator</h2>
+
+geometry folder
 
 The program should only require a version of Java 17 SDK and a copy of IntelliJ or another IDE to be run and tested.
