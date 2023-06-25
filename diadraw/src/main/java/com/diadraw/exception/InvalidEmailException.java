@@ -1,6 +1,6 @@
 package com.diadraw.exception;
 
-public class InvalidEmailException extends Exception{
+public class InvalidEmailException extends Exception {
 
     private final static String ERROR_MESSAGE = "InvalidEmail";
 

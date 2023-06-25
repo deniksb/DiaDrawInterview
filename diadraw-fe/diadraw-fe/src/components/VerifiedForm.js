@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import RegisterFormCSS from '../styles/RegisterForm.module.css';
+import FormCSS from '../styles/Form.module.css';
 
 const VerifyForm = ({image}) => {
 
   return (
-    <div className={RegisterFormCSS.registerformcontainer}>
+    <div className={FormCSS.registerformcontainer}>
+    <div className={FormCSS.inputfieldcontainer}>
     <img src={image} />
     <p>Verification successful!</p>
+    </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 package com.diadraw.exception;
 
-public class InvalidPhoneNumberException extends Exception{
+public class InvalidPhoneNumberException extends Exception {
 
     private final static String ERROR_MESSAGE = "InvalidPhoneNumber";
 

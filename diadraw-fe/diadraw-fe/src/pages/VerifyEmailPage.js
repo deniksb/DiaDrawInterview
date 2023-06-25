@@ -3,10 +3,10 @@ import axios from 'axios';
 import VerifyForm from '../components/VerifyForm';
 import jwt from 'jwt-decode';
 import { useNavigate, useLocation } from 'react-router-dom';
-import RegisterFormImg from '../assets/RegisterForm.svg';
+import EmailVerifyImg from '../assets/EmailVerify.svg';
 import RegisterPageCSS from '../styles/RegisterPage.module.css';
 
-const VerifyPage = () => {
+const VerifyEmailPage = () => {
 
   const navigate = useNavigate();
 
@@ -40,10 +40,10 @@ const VerifyPage = () => {
 
   return (
     <div className={RegisterPageCSS.registerpagecontainer}>
-      <h1>Verify your mobile number</h1>
-      <VerifyForm phoneNumber={phoneNumber} image={RegisterFormImg} onSubmit={handleSubmit} />
+      <h1>Verify your email address</h1>
+      <VerifyForm text={`A 6-digit code has been sent to ${email}`} image={EmailVerifyImg} onSubmit={handleSubmit} redirectUrl={`/verify/phone?email=${encodeURIComponent(email)}&phoneNumber=${encodeURIComponent(phoneNumber)}`} />
     </div>
   );
 };
 
-export default VerifyPage;
+export default VerifyEmailPage;

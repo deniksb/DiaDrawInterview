@@ -1,9 +1,12 @@
 package com.diadraw.controller;
 
+import com.diadraw.model.SignupRequest;
 import com.diadraw.service.CodeVerificationService;
 import com.diadraw.service.SignupService;
-import com.diadraw.model.SignupRequest;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -11,8 +14,7 @@ public class SignupController {
 
     private final SignupService signupService;
 
-    public SignupController(final SignupService signupService, final CodeVerificationService codeVerificationService)
-    {
+    public SignupController(final SignupService signupService, final CodeVerificationService codeVerificationService) {
         this.signupService = signupService;
     }
 

@@ -1,6 +1,6 @@
 package com.diadraw.exception;
 
-public class TokenExpiredException extends Exception{
+public class TokenExpiredException extends Exception {
 
     private final static String ERROR_MESSAGE = "TokenExpired";
 

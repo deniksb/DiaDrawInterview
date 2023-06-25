@@ -15,16 +15,15 @@ public class CodeSendRestService {
 
     private final OkHttpClient client;
 
-    public CodeSendRestService(@Value("${infobip.api.key}") final String apiKey)
-    {
-        this. client = new OkHttpClient().newBuilder().build();
+    public CodeSendRestService(@Value("${infobip.api.key}") final String apiKey) {
+        this.client = new OkHttpClient().newBuilder().build();
         this.apiKey = apiKey;
     }
 
     public Response sendSms(final String verificationCode, final String phoneNumber) throws IOException {
 
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\"messages\":[{\"destinations\":[{\"to\":\"" + phoneNumber +"\"}],\"from\":\"Denko\",\"text\":\"" + verificationCode +"\"}]}");
+        RequestBody body = RequestBody.create(mediaType, "{\"messages\":[{\"destinations\":[{\"to\":\"" + phoneNumber + "\"}],\"from\":\"Denko\",\"text\":\"" + verificationCode + "\"}]}");
         Request request = new Request.Builder()
                 .url(BASE_URL + "/sms/2/text/advanced")
                 .method("POST", body)

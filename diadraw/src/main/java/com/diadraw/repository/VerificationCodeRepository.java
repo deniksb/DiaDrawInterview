@@ -1,5 +1,6 @@
 package com.diadraw.repository;
 
+import com.diadraw.model.Customer;
 import com.diadraw.model.VerificationCode;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,6 +15,8 @@ import java.time.OffsetDateTime;
 public interface VerificationCodeRepository extends CrudRepository<VerificationCode, Integer> {
 
     VerificationCode findByCode(String code);
+
+    VerificationCode findByCustomer(Customer customer);
 
     @Modifying
     @Transactional

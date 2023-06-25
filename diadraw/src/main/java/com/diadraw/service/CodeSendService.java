@@ -21,8 +21,7 @@ public class CodeSendService {
 
     private final CustomerRepository customerRepository;
 
-    public CodeSendService(final CodeSendRestService codeSendRestService, final CodeVerificationService codeVerificationService, final CustomerRepository customerRepository)
-    {
+    public CodeSendService(final CodeSendRestService codeSendRestService, final CodeVerificationService codeVerificationService, final CustomerRepository customerRepository) {
         this.codeSendRestService = codeSendRestService;
         this.codeVerificationService = codeVerificationService;
         this.customerRepository = customerRepository;
@@ -31,8 +30,7 @@ public class CodeSendService {
     public String sendCodeViaEmail(final String email) throws IOException {
         final Customer customer = customerRepository.findByEmail(email);
 
-        if(customer == null)
-        {
+        if (customer == null) {
             logger.warn("Customer not found when sending code via email " + email);
 
             return Strings.EMPTY;
@@ -48,8 +46,7 @@ public class CodeSendService {
     public String sendCodeViaPhone(final String phone) throws IOException {
         final Customer customer = customerRepository.findByPhoneNumber(phone);
 
-        if(customer == null)
-        {
+        if (customer == null) {
             logger.warn("Customer not found when sending code via phone " + phone);
 
             return Strings.EMPTY;

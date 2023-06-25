@@ -7,3 +7,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a:link{
+  color: #6D2BC1;
+  background-color: transparent;
+  text-decoration: none;
+}

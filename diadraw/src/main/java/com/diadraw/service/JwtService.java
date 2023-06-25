@@ -1,6 +1,5 @@
 package com.diadraw.service;
 
-import com.diadraw.exception.TokenExpiredException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -37,8 +36,7 @@ public class JwtService {
     }
 
     public String validateJwtToken(final String token) throws Exception {
-        try
-        {
+        try {
             final Key key = Keys.hmacShaKeyFor(SIGNING_KEY.getBytes());
 
             Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
@@ -51,9 +49,7 @@ public class JwtService {
 //            }
 
             return claims.getBody().getSubject();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             logger.error("Failed to validate token: " + token + " with error: " + e);
 
             throw e;

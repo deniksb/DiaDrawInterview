@@ -3,7 +3,10 @@ package com.diadraw.controller;
 import com.diadraw.exception.CodeNotFoundException;
 import com.diadraw.service.CodeSendService;
 import com.diadraw.service.CodeVerificationService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
@@ -13,10 +16,9 @@ public class CodeVerificationController {
 
     private final CodeVerificationService codeVerificationService;
 
-    private CodeSendService codeSendService;
+    private final CodeSendService codeSendService;
 
-    public CodeVerificationController(final CodeVerificationService codeVerificationService, final CodeSendService codeSendService)
-    {
+    public CodeVerificationController(final CodeVerificationService codeVerificationService, final CodeSendService codeSendService) {
         this.codeVerificationService = codeVerificationService;
         this.codeSendService = codeSendService;
     }

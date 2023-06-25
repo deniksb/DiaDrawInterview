@@ -1,6 +1,6 @@
 package com.diadraw.exception;
 
-public class CodeNotFoundException extends Exception{
+public class CodeNotFoundException extends Exception {
 
     private final static String ERROR_MESSAGE = "CodeNotFound";
 
