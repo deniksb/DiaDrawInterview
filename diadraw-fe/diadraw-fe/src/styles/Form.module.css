@@ -50,3 +50,13 @@
 .formbutton:hover {
     background-color: #27127d;
   }
+
+.footerText{
+    display: inline-block;
+    text-align: center;
+}
+
+.titleText{
+    display: inline-block;
+    word-break: break-word;
+}

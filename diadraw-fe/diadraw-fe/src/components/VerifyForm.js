@@ -16,7 +16,7 @@ const VerifyForm = ({ onSubmit, image, text, redirectUrl }) => {
 
   return (
     <div className={FormCSS.registerformcontainer}>
-    <p>{text}</p>
+    <p className={FormCSS.titleText}>{text}</p>
     <img src={image} />
     <form onSubmit={handleSubmit} className={FormCSS.registerform}>
       <div className={FormCSS.inputfieldcontainer}>
@@ -32,8 +32,8 @@ const VerifyForm = ({ onSubmit, image, text, redirectUrl }) => {
       </div>
       <button className={FormCSS.formbutton} type="submit">CONTINUE</button>
     </form>
-    <div >
-    <p className={FormCSS.formtext}>Didn't receive code? Resend code</p>
+    <div className={FormCSS.footerText}>
+    <p className={FormCSS.formtext}>Didn't receive code? <a href="#">Resend code</a></p>
     <p className={FormCSS.formtext}>OR</p>
     <p className={FormCSS.formtext}><a href={redirectUrl}>Send verification code on email</a></p>
     </div>
