@@ -14,7 +14,7 @@ losfrenn@gmail.com. This is needed to gain access to the mail and sms send api w
 just change the port in the configuration in necessary.
 
 <b>Frontend</b> - diadraw-fe folder:
-I believe the project in the repo includes all of the dependencies and libraries and should be easily run by just entering the directory and running - npm start in the console. The program will start on port
+I believe the project in the repo includes all of the dependencies and libraries and should be easily run by just entering the directory and running - npm install and npm start in the console. The program will start on port
 localhost:3000
 
 After having both programs running locally testing should be possible. 
